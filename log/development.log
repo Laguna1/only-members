@@ -954,3 +954,380 @@ Migrating to AddUserIdToPosts (20210928210321)
   [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2021-09-29 01:54:57 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (8.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 35.7ms | Allocations: 1196)
+  Rendered layout layouts/application.html.erb (Duration: 119.3ms | Allocations: 2752)
+Completed 500 Internal Server Error in 516ms (ActiveRecord: 8.9ms | Allocations: 6320)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>OnlyMembers</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <% if flash[:notice] %>
+       <p class="notice text-primary"><%= notice %></p>
+    <% end %>
+    <% if flash[:alert] %>
+       <p class="alert text-danger"><%= alert %></p>
+    <% end %>
+     <nav class="navbar is-info">
+      <div class="navbar-brand">
+       <%= link_to root_path, class: "navbar-item" do %>
+         <h1 class="title is-5">MEMBERS ONLY</h1>
+      <% end %>
+        <div class="navbar-burger burger" data-target="navbarExample">
+         <span></span>
+         <span></span>
+         <span></span>
+        </div>
+      </div>
+      <div id="navbarExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="field is-grouped">
+            <p class="control">
+              <%= link_to 'New Post', new_post_path, class: "button is-info is-inverted" %>
+            </p>
+          <% if user_signed_in? %>
+            <p class="control">
+              <%= link_to current_user.name, edit_user_registration_path, class: "button is-info" %>
+            </p>
+            <p class="control">
+              <%= link_to 'Log Out', destroy_session_path, method: :delete, class: "button is-info" %>
+            </p>
+          <% else %>
+            <p class="control">
+              <%= link_to 'Sign Up' new_user_registration_path, class: "button is-info" %>
+            </p>
+            <p class="control">
+              <%= link_to 'Sign In' new_user_session_path, class: "button is-info" %>
+            </p>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>:
+
+Started POST "/__better_errors/ac65ba54531f65fd/variables" for ::1 at 2021-09-29 01:55:07 +0300
+Started GET "/" for ::1 at 2021-09-29 01:56:13 +0300
+Processing by PostsController#index as HTML
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/posts_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 15.2ms | Allocations: 3340)
+  Rendered layout layouts/application.html.erb (Duration: 17.9ms | Allocations: 4889)
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 3.3ms | Allocations: 6468)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>OnlyMembers</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <% if flash[:notice] %>
+       <p class="notice text-primary"><%= notice %></p>
+    <% end %>
+    <% if flash[:alert] %>
+       <p class="alert text-danger"><%= alert %></p>
+    <% end %>
+     <nav class="navbar is-info">
+      <div class="navbar-brand">
+       <%= link_to root_path, class: "navbar-item" do %>
+         <h1 class="title is-5">MEMBERS ONLY</h1>
+      <% end %>
+        <div class="navbar-burger burger" data-target="navbarExample">
+         <span></span>
+         <span></span>
+         <span></span>
+        </div>
+      </div>
+      <div id="navbarExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="field is-grouped">
+            <p class="control">
+              <%= link_to 'New Post', new_post_path, class: "button is-info is-inverted" %>
+            </p>
+          <% if user_signed_in? %>
+            <p class="control">
+              <%= link_to current_user.name, edit_user_registration_path, class: "button is-info" %>
+            </p>
+            <p class="control">
+              <%= link_to 'Log Out', destroy_session_path, method: :delete, class: "button is-info" %>
+            </p>
+          <% else %>
+            <p class="control">
+              <%= link_to 'Sign Up' new_user_registration_path, class: "button is-info" %>
+            </p>
+            <p class="control">
+              <%= link_to 'Sign In' new_user_session_path, class: "button is-info" %>
+            </p>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>:
+
+Started POST "/__better_errors/15914797c04b73e7/variables" for ::1 at 2021-09-29 01:56:14 +0300
+Started GET "/" for ::1 at 2021-09-29 01:59:28 +0300
+Processing by PostsController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/posts_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (8.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 37.1ms | Allocations: 1194)
+  Rendered layout layouts/application.html.erb (Duration: 39.2ms | Allocations: 2751)
+Completed 500 Internal Server Error in 678ms (ActiveRecord: 11.4ms | Allocations: 7364)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>OnlyMembers</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <% if flash[:notice] %>
+       <p class="notice text-primary"><%= notice %></p>
+    <% end %>
+    <% if flash[:alert] %>
+       <p class="alert text-danger"><%= alert %></p>
+    <% end %>
+     <nav class="navbar is-info">
+      <div class="navbar-brand">
+       <%= link_to root_path, class: "navbar-item" do %>
+         <h1 class="title is-5">MEMBERS ONLY</h1>
+      <% end %>
+        <div class="navbar-burger burger" data-target="navbarExample">
+         <span></span>
+         <span></span>
+         <span></span>
+        </div>
+      </div>
+      <div id="navbarExample" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="field is-grouped">
+          <% if user_signed_in? %>
+            <p class="control">
+              <%= link_to 'New Post', new_post_path, class: "button is-info is-inverted" %>
+            </p>
+            <p class="control">
+              <%= link_to current_user.name, edit_user_registration_path, class: "button is-info" %>
+            </p>
+            <p class="control">
+              <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "button is-info" %>
+            </p>
+          <% else %>
+            <p class="control">
+              <%= link_to 'Sign Up' new_user_registration_path, class: "button is-info" %>
+            </p>
+            <p class="control">
+              <%= link_to 'Sign In' new_user_session_path, class: "button is-info" %>
+            </p>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>:
+
+Started POST "/__better_errors/9815c3381181091e/variables" for ::1 at 2021-09-29 01:59:40 +0300
+Started GET "/" for ::1 at 2021-09-29 02:04:01 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 8.4ms | Allocations: 1129)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 518.7ms | Allocations: 5266)
+Completed 200 OK in 559ms (Views: 522.3ms | ActiveRecord: 0.4ms | Allocations: 6499)
+
+
+Started GET "/" for ::1 at 2021-09-29 02:05:20 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.8ms | Allocations: 1133)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (20.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:44
+  Rendered layout layouts/application.html.erb (Duration: 71.0ms | Allocations: 10288)
+Completed 200 OK in 77ms (Views: 53.0ms | ActiveRecord: 21.7ms | Allocations: 11527)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2021-09-29 02:06:05 +0300
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 339ms (ActiveRecord: 1.7ms | Allocations: 2385)
+
+
+Started GET "/" for ::1 at 2021-09-29 02:06:05 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (3.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 7.8ms | Allocations: 899)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 28.5ms | Allocations: 4763)
+Completed 200 OK in 33ms (Views: 26.2ms | ActiveRecord: 3.3ms | Allocations: 5200)
+
+
+Started GET "/" for ::1 at 2021-09-29 02:07:12 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (38.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 152.6ms | Allocations: 1131)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 476.0ms | Allocations: 5497)
+Completed 200 OK in 945ms (Views: 546.6ms | ActiveRecord: 38.4ms | Allocations: 6733)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-09-29 02:07:28 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 13.6ms | Allocations: 568)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 4523.9ms | Allocations: 12029)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 4539.7ms | Allocations: 15775)
+Completed 200 OK in 4544ms (Views: 4542.4ms | ActiveRecord: 0.0ms | Allocations: 17285)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-09-29 02:07:55 +0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"oksana@mail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (108.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "oksana@mail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 628ms (ActiveRecord: 108.0ms | Allocations: 1697)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"oksana@mail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 116)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 23.5ms | Allocations: 8384)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 237.0ms | Allocations: 12087)
+Completed 200 OK in 512ms (Views: 237.8ms | ActiveRecord: 0.0ms | Allocations: 12637)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-09-29 02:08:06 +0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"oksana@mail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "oksana@mail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 293ms (ActiveRecord: 0.2ms | Allocations: 1455)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"oksana@mail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 116)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 25.0ms | Allocations: 8373)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 34.5ms | Allocations: 12075)
+Completed 200 OK in 330ms (Views: 35.7ms | ActiveRecord: 0.0ms | Allocations: 12598)
+
+
+Started GET "/users/sign_up" for ::1 at 2021-09-29 02:08:14 +0300
+
+AbstractController::ActionNotFound - The action 'new' could not be found for RegistrationsController:
+
+Started POST "/__better_errors/774e661362be0530/variables" for ::1 at 2021-09-29 02:08:15 +0300
+Started GET "/users/sign_up" for ::1 at 2021-09-29 02:11:03 +0300
+Processing by RegistrationsController#new as HTML
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 77)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 45.8ms | Allocations: 9471)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 249.3ms | Allocations: 13222)
+Completed 200 OK in 457ms (Views: 290.1ms | ActiveRecord: 73.3ms | Allocations: 20078)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-09-29 02:11:11 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.7ms | Allocations: 126)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 54.5ms | Allocations: 8342)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 65.3ms | Allocations: 12086)
+Completed 200 OK in 70ms (Views: 68.5ms | ActiveRecord: 0.0ms | Allocations: 13050)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-09-29 02:11:36 +0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"oksana@mail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (53.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "oksana@mail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 351ms (ActiveRecord: 53.4ms | Allocations: 3408)
+
+
+Started GET "/" for ::1 at 2021-09-29 02:11:37 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mPost Load (13.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" ORDER BY created_at DESC[0m
+  ↳ app/views/posts/index.html.erb:14
+  Rendered posts/index.html.erb within layouts/application (Duration: 17.0ms | Allocations: 963)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/application.html.erb:37
+  Rendered layout layouts/application.html.erb (Duration: 26.4ms | Allocations: 5582)
+Completed 200 OK in 48ms (Views: 14.3ms | ActiveRecord: 14.4ms | Allocations: 8786)
+
+
