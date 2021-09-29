@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Posts</h1>
+
+<table>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <td>
+         <% if user_signed_in? %>
+<p>
+  <strong>Author:</strong>
+  <%= post.user.name %>
+</p>
+<% end %>
+      </td>
+      <tr>
+        <td><%= post.post %></td>
+    <% if user_signed_in? && current_user.id == post.user_id %> 
+        <td><%= link_to 'Edit post', edit_post_path(post) %> </td>
+        <td><%= link_to 'Delete post', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
