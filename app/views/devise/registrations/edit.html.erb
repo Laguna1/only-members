@@ -10,6 +10,11 @@
                 input_html: { class:"input" },
                 wrapper: false,
                 label_html: { class:"label" } %>
+    <%= f.input :username,
+                required: true,
+                input_html: { class:"input" },
+                wrapper: false,
+                label_html: { class:"label" } %>
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
